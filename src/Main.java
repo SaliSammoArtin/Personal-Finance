@@ -3,7 +3,7 @@ import java.time.temporal.WeekFields;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Account account = new Account();
         Scanner input = new Scanner(System.in);
 
@@ -37,9 +37,7 @@ public class Main {
 
                 account.addTransaction(amount, date, description);
                 System.out.println("Transaction has been added.\nPress 7 to see the menu again");
-            }
-
-            else if (option == 2) {
+            } else if (option == 2) {
                 System.out.println("Enter amount:");
                 double amount = input.nextDouble();
                 input.nextLine();
@@ -52,15 +50,11 @@ public class Main {
 
                 account.removeTransaction(amount, date, description);
                 System.out.println("Transaction has been deleted.\nPress 7 to see the menu again");
-            }
-
-            else if (option == 3) {
+            } else if (option == 3) {
                 account.getAllTransactions();
-            }
-            else if (option == 4) {
+            } else if (option == 4) {
                 account.getBalance();
-            }
-            else if (option == 5) {
+            } else if (option == 5) {
                 System.out.println("Do you want to view expenses by year, month, week, or day?");
                 String period = input.nextLine();
 
@@ -105,14 +99,7 @@ public class Main {
                     account.viewExpenses(period, userYear, userMonth, userWeek, userDay);
                     System.out.println("Press 7 to see the menu again");
                 }
-            }
-
-<<<<<<< HEAD
-            else if (option == 6)
-                System.out.println("View income");
-            else if (option == 7);
-=======
-            else if (option == 6) {
+            } else if (option == 6) {
                 System.out.println("Do you want to view income by year, month, week, or day?");
                 String period = input.nextLine();
 
@@ -158,7 +145,6 @@ public class Main {
                     System.out.println("Press 7 to see the menu again");
                 }
             }
->>>>>>> 6de46a3 (Första commit av PersonalFinance-projektet)
-            }
         }
     }
+}
