@@ -13,7 +13,11 @@ public class Account {
         try (BufferedReader reader = new BufferedReader(new FileReader("transactions.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
+<<<<<<< HEAD
                 if(line.trim().isEmpty()) continue;
+=======
+                if (line.trim().isEmpty()) continue;
+>>>>>>> 6de46a3 (Första commit av PersonalFinance-projektet)
                 String[] parts = line.split(" ");
                 double amount = Double.parseDouble(parts[0]);
                 String date = parts[1];
@@ -52,7 +56,11 @@ public class Account {
             for (Transaction t : transactions) {
                 file.write(t.amount + " " + t.date + " " + t.description + "\n");
             }
+<<<<<<< HEAD
         } catch(IOException e){
+=======
+        } catch (IOException e) {
+>>>>>>> 6de46a3 (Första commit av PersonalFinance-projektet)
             System.out.println("Something went wrong!");
         }
     }
@@ -65,7 +73,11 @@ public class Account {
         System.out.println("Press 7 to see the menu again");
     }
 
+<<<<<<< HEAD
     public void getBalance(){
+=======
+    public void getBalance() {
+>>>>>>> 6de46a3 (Första commit av PersonalFinance-projektet)
         double balance = 0;
         for (Transaction t : transactions) {
             balance += t.amount;
@@ -81,6 +93,7 @@ public class Account {
             if (t.amount < 0) {
                 LocalDate date = t.date;
 
+<<<<<<< HEAD
                 if(period.equalsIgnoreCase("year")) {
                     if(date.getYear() == userYear) {
                         expenses += t.amount;
@@ -98,6 +111,22 @@ public class Account {
                 }
                 else if(period.equalsIgnoreCase("day")) {
                     if(date.getDayOfMonth() == userDay && date.getMonthValue() == userMonth && date.getYear() == userYear) {
+=======
+                if (period.equalsIgnoreCase("year")) {
+                    if (date.getYear() == userYear) {
+                        expenses += t.amount;
+                    }
+                } else if (period.equalsIgnoreCase("month")) {
+                    if (date.getYear() == userYear && date.getMonthValue() == userMonth) {
+                        expenses += t.amount;
+                    }
+                } else if (period.equalsIgnoreCase("week")) {
+                    if (date.getYear() == userYear && date.get(WeekFields.ISO.weekOfWeekBasedYear()) == userWeek) {
+                        expenses += t.amount;
+                    }
+                } else if (period.equalsIgnoreCase("day")) {
+                    if (date.getDayOfMonth() == userDay && date.getMonthValue() == userMonth && date.getYear() == userYear) {
+>>>>>>> 6de46a3 (Första commit av PersonalFinance-projektet)
                         expenses += t.amount;
                     }
                 }
@@ -105,4 +134,36 @@ public class Account {
         }
         System.out.println("Total expenses for " + period + ": " + expenses);
     }
+<<<<<<< HEAD
+=======
+
+    public void viewIncome(String period, int userYear, int userMonth, int userWeek, int userDay) {
+        double income = 0;
+        for (Transaction t : transactions) {
+
+            if (t.amount > 0) {
+                LocalDate date = t.date;
+
+                if (period.equalsIgnoreCase("year")) {
+                    if (date.getYear() == userYear) {
+                        income += t.amount;
+                    }
+                } else if (period.equalsIgnoreCase("month")) {
+                    if (date.getYear() == userYear && date.getMonthValue() == userMonth) {
+                        income += t.amount;
+                    }
+                } else if (period.equalsIgnoreCase("week")) {
+                    if (date.getYear() == userYear && date.get(WeekFields.ISO.weekOfWeekBasedYear()) == userWeek) {
+                        income += t.amount;
+                    }
+                } else if (period.equalsIgnoreCase("day")) {
+                    if (date.getDayOfMonth() == userDay && date.getMonthValue() == userMonth && date.getYear() == userYear) {
+                        income += t.amount;
+                    }
+                }
+            }
+        }
+        System.out.println("Total income for " + period + ": " + income);
+    }
+>>>>>>> 6de46a3 (Första commit av PersonalFinance-projektet)
 }

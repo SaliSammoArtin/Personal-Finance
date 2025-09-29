@@ -107,9 +107,58 @@ public class Main {
                 }
             }
 
+<<<<<<< HEAD
             else if (option == 6)
                 System.out.println("View income");
             else if (option == 7);
+=======
+            else if (option == 6) {
+                System.out.println("Do you want to view income by year, month, week, or day?");
+                String period = input.nextLine();
+
+                int userYear = 0;
+                int userMonth = 0;
+                int userWeek = 0;
+                int userDay = 0;
+
+                if (period.equalsIgnoreCase("year")
+                        || period.equalsIgnoreCase("month")
+                        || period.equalsIgnoreCase("week")
+                        || period.equalsIgnoreCase("day")) {
+
+                    if (period.equalsIgnoreCase("year")) {
+                        System.out.println("Enter year:");
+                        userYear = input.nextInt();
+                        input.nextLine();
+                    }
+
+                    if (period.equalsIgnoreCase("month")) {
+                        System.out.println("Enter month (1-12):");
+                        userMonth = input.nextInt();
+                        input.nextLine();
+                    }
+
+                    if (period.equalsIgnoreCase("week")) {
+                        System.out.println("Enter a date (yyyy-MM-dd):");
+                        String dateInput = input.nextLine();
+                        LocalDate userDate = LocalDate.parse(dateInput, Transaction.formatter);
+                        userWeek = userDate.get(WeekFields.ISO.weekOfWeekBasedYear());
+                        userYear = userDate.getYear();
+                    }
+
+                    if (period.equalsIgnoreCase("day")) {
+                        System.out.println("Enter a date (yyyy-MM-dd):");
+                        String dateInput = input.nextLine();
+                        LocalDate userDate = LocalDate.parse(dateInput, Transaction.formatter);
+                        userYear = userDate.getYear();
+                        userMonth = userDate.getMonthValue();
+                        userDay = userDate.getDayOfMonth();
+                    }
+                    account.viewIncome(period, userYear, userMonth, userWeek, userDay);
+                    System.out.println("Press 7 to see the menu again");
+                }
+            }
+>>>>>>> 6de46a3 (Första commit av PersonalFinance-projektet)
             }
         }
     }
