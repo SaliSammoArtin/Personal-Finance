@@ -13,6 +13,7 @@ public class Transaction {
         this.date = LocalDate.parse(date, formatter);
         this.description = description;
     }
+
     public String toString() {
         return amount + ", " + date.format(formatter) + ", " + description;
     }
