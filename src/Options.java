@@ -1,9 +1,0 @@
-public enum Options {
-    ADD_TRANSACTION,
-    REMOVE_TRANSACTION,
-    VIEW_TRANSACTIONS,
-    VIEW_BALANCE,
-    VIEW_EXPENSES,
-    VIEW_INCOME,
-    EXIT
-}
