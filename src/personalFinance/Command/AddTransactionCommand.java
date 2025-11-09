@@ -2,7 +2,6 @@ package personalFinance.Command;
 
 import personalFinance.Service.AccountService;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class AddTransactionCommand implements ICommand {
@@ -22,7 +21,7 @@ public class AddTransactionCommand implements ICommand {
         input.nextLine();
 
         System.out.println("Enter date (yyyy-MM-dd):");
-        LocalDate date = LocalDate.parse(input.nextLine());
+        String date = input.nextLine();
 
         System.out.println("Enter description:");
         String description = input.nextLine();

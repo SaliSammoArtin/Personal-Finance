@@ -21,4 +21,3 @@ public class ViewTransactionsCommand implements ICommand {
         }
     }
 }
-

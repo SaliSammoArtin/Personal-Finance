@@ -3,7 +3,6 @@ package personalFinance.Repository;
 import personalFinance.Model.Transaction;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,19 +21,18 @@ public class FileAccountRepository implements IAccountRepository {
             while ((line = reader.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
 
-                String[] parts = line.split(" ");
+                String[] parts = line.split(" ", 3);
                 double amount = Double.parseDouble(parts[0]);
-                LocalDate date = LocalDate.parse(parts[1]); // nu LocalDate
-                String description = parts[2];
+                String date = parts[1];
+                String description = parts.length >= 3 ? parts[2] : "";
 
-                transactions.add(new Transaction(date, amount, description));
+                transactions.add(new Transaction(amount, date, description));
             }
         } catch (IOException e) {
             throw new RuntimeException("Could not load transactions", e);
         }
         return transactions;
     }
-
 
     @Override
     public void saveTransaction(Transaction transaction) {

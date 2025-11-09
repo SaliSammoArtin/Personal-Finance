@@ -1,15 +1,21 @@
 package personalFinance.Model;
 
-import java.time.LocalDate;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Transaction {
     private double amount;
-    private LocalDate date;
+    private Instant date;
     private String description;
 
-    public Transaction(LocalDate date, double amount, String description) {
+    private static final DateTimeFormatter INPUT_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneOffset.UTC);
+
+    public Transaction(double amount, String dateString, String description) {
         this.amount = amount;
-        this.date = date;
+
+        LocalDate localDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.date = localDate.atStartOfDay(ZoneOffset.UTC).toInstant();
         this.description = description;
     }
 
@@ -17,7 +23,7 @@ public class Transaction {
         return amount;
     }
 
-    public LocalDate getDate() {
+    public Instant getDate() {
         return date;
     }
 
@@ -29,8 +35,9 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDate(String dateString) {
+        LocalDate localDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.date = localDate.atStartOfDay(ZoneOffset.UTC).toInstant();
     }
 
     public void setDescription(String description) {
@@ -39,6 +46,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return amount + ", " + date + ", " + description;
+        LocalDate localDate = date.atZone(ZoneOffset.UTC).toLocalDate();
+        return amount + ", " + localDate + ", " + description;
     }
 }

@@ -2,7 +2,7 @@ package personalFinance.Model;
 
 import java.util.List;
 
-public interface Accountable {
+public interface IAccountable {
     void addTransaction(double amount, String date, String description);
     void removeTransaction(double amount, String date, String description);
     List<Transaction> getTransactions();

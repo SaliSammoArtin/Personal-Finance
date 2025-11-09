@@ -2,7 +2,6 @@ package personalFinance.Command;
 
 import personalFinance.Service.AccountService;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class RemoveTransactionCommand implements ICommand {
@@ -27,7 +26,7 @@ public class RemoveTransactionCommand implements ICommand {
         System.out.println("Enter description:");
         String description = input.nextLine();
 
-        service.removeTransaction(amount, LocalDate.parse(date), description);
+        service.removeTransaction(amount, date, description);
         System.out.println("Transaction removed!");
     }
 }

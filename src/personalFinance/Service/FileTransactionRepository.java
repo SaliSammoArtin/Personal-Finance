@@ -5,11 +5,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileTransactionRepository implements TransactionRepository {
+public class FileTransactionRepository implements ITransactionRepository {
 
     @Override
     public List<Transaction> loadTransactions() throws IOException {
@@ -19,12 +18,14 @@ public class FileTransactionRepository implements TransactionRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
-                String[] parts = line.split(" ");
+
+                String[] parts = line.split(" ", 3);
+
                 double amount = Double.parseDouble(parts[0]);
-                LocalDate date = LocalDate.parse(parts[1]);
-                String description = parts[2];
-                Transaction transaction = new Transaction(date, amount, description);
-                transactions.add(transaction);
+                String date = parts[1];
+                String description = parts.length > 2 ? parts[2] : "";
+
+                transactions.add(new Transaction(amount, date, description));
             }
         }
         return transactions;
